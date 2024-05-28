@@ -129,6 +129,15 @@ int main(int argc, char const *argv[])
   int    KSTEP;                 // Garbage       
   int    KIN;                   // Garbage
 
+  // Fill in some strain values
+  STRAN[0] = 0.001;
+
+  // Print imposed strain to terminal
+  std::cout << "Imposed strain STRAN array:" << std::endl;
+  for ( int i = 0; i<NTENS; i++ )
+    std::cout << "STRAN[" << i << "] = "
+              << STRAN[i] << std::endl;
+
   // Call the UMAT function
   umat(&STRESS[0], &STATEV, &DDSDDE[0][0], &SSE, &SPD, &SCD,
        &RPL, &DDSDDT, &DRPLDE, &DRPLDT, &STRAN[0], &DSTRAN[0], 
@@ -139,11 +148,18 @@ int main(int argc, char const *argv[])
 
   // To demonstrate that UMAT function works, we print out the
   // material tangent
-  std::cout << "DDSDDE array after UMAT call:" << std::endl;
+  std::cout << "\nDDSDDE array after UMAT call:" << std::endl;
   for ( int i = 0; i<NTENS; i++ )
     for ( int j = 0; j<NTENS; j++ )
       std::cout << "DDSDDE[" << i << "," << j << "] = "
                 << DDSDDE[i][j] << std::endl;
+
+  // To demonstrate that UMAT function works, we print out the
+  // stress
+  std::cout << "\nSTRESS array after UMAT call:" << std::endl;
+  for ( int i = 0; i<NTENS; i++ )
+    std::cout << "STRESS[" << i << "] = "
+              << STRESS[i] << std::endl;
 
 	/* code */
 	return 0;
