@@ -55,7 +55,7 @@ C     SHEAR CONTRIBUTION
 C     EVALUATE STRESS
       do I = 1, NTENS
         do J = 1, NTENS
-          STRESS(I) = STRESS(I) + DDSDDE(I,J) * dstran(J)
+          STRESS(I) = STRESS(I) + DDSDDE(I,J) * STRAN(J)
         end do 
       end do 
 C
